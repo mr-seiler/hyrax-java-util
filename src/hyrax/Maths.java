@@ -2,6 +2,7 @@ package hyrax;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -128,6 +129,42 @@ public class Maths {
 	 */
 	public static long binomialCoefficient(int n, int k) {
 		return new BinomialCoefficient().solve(n, k);
+	}
+	
+	/**
+	 * Convert a string representing a number in some base to a 
+	 * string representing the same value in some other base.
+	 * Preconditions: 
+	 * - decimal value of input be less than Integer.MAX_VALUE
+	 * - symbols in input not inconsistent with base specified
+	 * - inBase and outBase between 2 and 36 
+	 * @param input String representation of a number
+	 * @param inBase the base of the number represented by "input"
+	 * @param outBase the base to convert the number to
+	 * @return input converted from inBase to outBase
+	 */
+	public static String convertBase(String input, int inBase, int outBase) {
+		StringBuilder result = new StringBuilder();
+		int decimal = 0;
+		char[] symbols = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+		
+		if (inBase > symbols.length || outBase > symbols.length) return "N/A";
+	
+		if (inBase == 10) {
+			decimal = Integer.parseInt(input);
+		}
+		else {
+			for (int i = 0; i < input.length(); i++) {
+				decimal += (Arrays.binarySearch(symbols, input.charAt(i)) * (Math.pow(inBase, input.length()-i-1)));
+			}
+		}
+		
+		while (decimal > 0) {
+			result.insert(0, symbols[decimal % outBase]);
+			decimal /= outBase;
+		}
+		
+		return result.toString();
 	}
 }
 

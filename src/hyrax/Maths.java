@@ -2,6 +2,7 @@ package hyrax;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Maths {
@@ -117,5 +118,36 @@ public class Maths {
 			}
 			return f2;
 		}
+	}
+	
+	/**
+	 * Finds the number of k-combinations from a given set of n elements; C(n, k)
+	 * @param n
+	 * @param k
+	 * @return C(n, k)
+	 */
+	public static long binomialCoefficient(int n, int k) {
+		return new BinomialCoefficient().solve(n, k);
+	}
+}
+
+class BinomialCoefficient {
+	private HashMap<Integer, Long> memo = new HashMap<Integer, Long>();
+	public long solve(int n, int k) {
+		int key = ((n * 31) + k);
+		if (!memo.containsKey(key)) {
+			long c;
+			if (k == 0) {
+				c = 1;
+			}
+			else if (n == 0 && k > 0) {
+				c = 0;
+			}
+			else {
+				c = solve(n - 1, k - 1) + solve(n - 1, k); 
+			}
+			memo.put(key, c);
+		}
+		return memo.get(key);
 	}
 }

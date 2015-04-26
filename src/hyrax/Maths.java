@@ -166,6 +166,25 @@ public class Maths {
 		
 		return result.toString();
 	}
+	
+	/**
+	 * Given some angle in whole degrees, return the same angle inside the range 0..360.
+	 * For example, 400 -> 400 - 360 = 40, or -30 -> -30 + 360 = 330
+	 * @param angle value in whole degrees
+	 * @return the same angle, but in the range 0..360
+	 */
+	public static int normalizeDegrees(int angle) {
+		int r = angle;
+		if (angle >= 360) {
+			return r % 360;
+		}
+		else if (angle < 0) {
+			while (r < 0) {
+				r += 360;
+			}
+		}
+		return r;
+	}
 }
 
 class BinomialCoefficient {

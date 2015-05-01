@@ -1,11 +1,20 @@
+# built packages
 *.jar
 *.war
 *.ear
 
+# binary files
 *.class
 *.dat
 *.bin
 
+# build class files and javadoc (if any)
 bin/
 doc/
+
+# user specific eclipse stuff
 .settings/
+
+# user specific IntelliJ stuff
+.idea/workspace.xml
+.idea/tasks.xml

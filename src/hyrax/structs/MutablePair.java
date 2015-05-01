@@ -1,4 +1,4 @@
-package hyrax;
+package hyrax.structs;
 
 public class MutablePair<T, E> {
 	private T one;

@@ -1,4 +1,4 @@
-package hyrax;
+package hyrax.structs;
 
 /**
  * In immutable pair of any two types
